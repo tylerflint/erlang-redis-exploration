@@ -1,6 +1,6 @@
 all: 
 	(cd deps/redo;$(MAKE) all)
-	@rebar compile
+	@./rebar compile
 	@escript release/build_rel.escript boot redis `pwd`/ebin
 
 clean:
