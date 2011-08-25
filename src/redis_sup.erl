@@ -25,6 +25,7 @@ start_link() ->
 
 init([]) ->
     {ok, { {one_for_one, 5, 10}, [
-        {redo, {redo, start_link, []}, permanent, 2000, worker, [redo]}
+        {redo, {redo, start_link, []}, permanent, 2000, worker, [redo]},
+        {redgrid, {redgrid, start_link, []}, permanent, 2000, worker, [redgrid]}
     ]}}.
 
