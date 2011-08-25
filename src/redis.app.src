@@ -1,0 +1,12 @@
+{application, redis,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { redis_app, []}},
+  {env, []}
+ ]}.

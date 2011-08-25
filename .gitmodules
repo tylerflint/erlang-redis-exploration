@@ -1,0 +1,3 @@
+[submodule "deps/redo"]
+	path = deps/redo
+	url = git://github.com/JacobVorreuter/redo.git
