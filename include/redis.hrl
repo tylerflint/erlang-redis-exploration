@@ -1,0 +1,2 @@
+
+-record(frog,{name,color}).
