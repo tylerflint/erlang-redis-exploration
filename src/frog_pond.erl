@@ -26,7 +26,7 @@ list_frogs() ->
 	ets:match(frog,'$1').
 
 add_local_frog(Name, Color) ->
-	ets:insert(frog,{Name,Color}).
+	ets:insert(frog, #frog{name=Name, color=Color}).
 
 remove_local_frog(Name) ->
 	ets:match_delete(frog,{Name,'_'}).
