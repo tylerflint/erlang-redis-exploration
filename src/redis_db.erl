@@ -13,7 +13,7 @@ start_link() ->
 
 create_ets_tables() ->
 
-	ets:new(frog, [named_table,set, {keypos, 2}]).
+	ets:new(frog, [named_table,set,public, {keypos, 2}]).
 
 boot_nsync() ->
     ok = application:start(nsync, temporary),
