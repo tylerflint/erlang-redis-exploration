@@ -10,7 +10,7 @@ handle({load, <<"frog:", Rest/binary>>, Dict}) when is_tuple(Dict) ->
 
 handle({load, Key, Val}) ->
 	%some times Val has the value {dict,_,_,_,_,_,_,_,_}, this will not work will the ~s formatter
-    io:format("Key:~s Value:~w~n", [Key, Val]),
+    % io:format("Key:~s Value:~w~n", [Key, Val]),
     ok;
 	
 handle({load, eof}) ->
@@ -22,30 +22,31 @@ handle({load, eof}) ->
 %[<<"frog:kermit:data">>,<<"name">>,<<"kermit">>,<<"color">>,<<"green">>]
 
 handle({cmd, "hmset", [Key,_,Name,_,Color] = Args}) ->
-	io:format("received an insertion ~s~n",[Args]),
+	% io:format("received an insertion ~s~n",[Args]),
 	frog_pond:add_local_frog(binary:bin_to_list(Name),Color),
 	ok;
 
 handle({cmd, "expire", [Key] = Args}) ->
-	io:format("received an expiration ~s~n",[Args]),
+	% io:format("received an expiration ~s~n",[Args]),
 	ok;
 
 %this one may not match against anything that we need for the frogs,
 handle({cmd, "publish", [Key] = Args}) ->
-	io:format("received a publication ~s~n",[Args]),
+	% io:format("received a publication ~s~n",[Args]),
 	ok;
 
 handle({cmd, "del", [<<"frog:",Key/binary>>]}) ->
 %	io:format("received a deletion ~s~n",Key),
 	case binary:match(Key,<<":data">>) of
 		{End,_} ->
-			io:format("match!~n"),
+			% io:format("match!~n"),
 			Name = binary:bin_to_list(binary:part(Key,0,End)),
-			io:format("trying key '~s'~n",[Name]),
+			% io:format("trying key '~s'~n",[Name]),
 			frog_pond:remove_local_frog(Name),
 			ok;
 		nomatch ->
-			io:format("unable to match~n")
+            error
+			% io:format("unable to match~n")
 	end;
 
 %this is a match for data we do not care about
