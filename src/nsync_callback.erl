@@ -30,7 +30,7 @@ handle({cmd, "publish", [Key] = Args}) ->
 	io:format("received a publication ~s~n",[Args]),
 	ok;
 
-handle({cmd, "del", [<<"frog:",Rest/binary]}) ->
+handle({cmd, "del", [<<"frog:",Args/binary>>]}) ->
 	io:format("received a deletion ~w~n",Args),
 	io:format(Args),
 %	Result = binary:match(Key,<<":data">>),
