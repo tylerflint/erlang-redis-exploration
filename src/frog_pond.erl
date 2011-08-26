@@ -5,7 +5,8 @@
     remove_frog/1,
     list_frogs/0,
     add_local_frog/2,
-    remove_local_frog/1
+    remove_local_frog/1,
+	test/0
 ]).
 
 -include_lib("redis.hrl").
@@ -33,3 +34,8 @@ remove_local_frog(Name) ->
 
 new_frog(Name,Color) ->
 	#frog{name=Name,color=Color}.
+	
+test() ->
+	add_frog("Kermit","Green"),
+	remove_frog("kermit"),
+	list_frogs().
