@@ -12,7 +12,6 @@ start_link() ->
     {ok, Pid}.
 
 create_ets_tables() ->
-
 	ets:new(frog, [named_table,set,public, {keypos, 2}]).
 
 boot_nsync() ->
