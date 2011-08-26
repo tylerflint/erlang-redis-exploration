@@ -4,8 +4,9 @@
 -export([handle/1]).
 
 handle({load, Key, Val}) ->
-    io:format("Key:~s Value:~s~n", [Key, Val]);
-
+	%some times Val has the value {dict,_,_,_,_,_,_,_,_}, this will not work will the ~s formatter
+    io:format("mine Key:~s Value:~w~n", [Key, Val]);
+	
 handle({load, eof}) ->
     io:format("redis tables loaded.", []);
 
@@ -18,4 +19,3 @@ handle({error, closed}) ->
 
 handle(_) ->
     ok.
-
