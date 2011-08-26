@@ -7,22 +7,15 @@
 ]).
 
 add_frog(Name, Color) ->
-    %% create the unique frog id
-    % FrogId = redo:cmd(["INCR", "next.frog.id"]),
-    % Key = "frog:" ++ integer_to_list(FrogId), 
-    Key = "frog:" ++ Name,
-
-    %% store the frog
+    Key = iolist_to_binary(["frog:", string:to_lower(Name), ":data"]),
     redo:cmd(["HMSET", Key, 
         "name", Name,
         "color", Color
-    ]),
-
-    %% add the frog id to the frog list
-    redo:cmd(["SADD", "frogs", Key]).
+    ]).
 
 remove_frog(Name) ->
-    ok.
+    Key = iolist_to_binary(["frog:", string:to_lower(Name), ":data"]),
+    redo:cmd(["DEL", Key]).
 
 list_frogs() ->
     ok.

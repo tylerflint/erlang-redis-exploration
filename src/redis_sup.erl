@@ -26,9 +26,9 @@ start_link() ->
 init([]) ->
     {ok, { {one_for_one, 5, 10}, [
         {redo, {redo, start_link, []}, permanent, 2000, worker, [redo]},
-        {redgrid, {redgrid, start_link, []}, permanent, 2000, worker, [redgrid]}
-        % {nsync, {nsync, start_link, nsync_opts()}, permanent, 2000, worker, [nsync]}
+        {redgrid, {redgrid, start_link, []}, permanent, 2000, worker, [redgrid]},
+        {nsync, {nsync, start_link, [nsync_opts()]}, permanent, 2000, supervisor, [nsync]}
     ]}}.
 
 nsync_opts() ->
-    [{callback, {nsync_callback, handle, []}}, {block, true}, {timeout, 20 * 60 * 1000}].
+    [{callback, {nsync_callback, handle, []}}, {block, false}, {timeout, 20 * 60 * 1000}].
