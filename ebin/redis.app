@@ -5,4 +5,5 @@
               {applications,[kernel,stdlib]},
               {mod,{redis_app,[]}},
               {env,[]},
-              {modules,[frog_pond,nsync_callback,redis_app,redis_sup]}]}.
+              {modules,[ets_db,frog_ets,frog_pond,nsync_callback,redis_app,
+                        redis_sup]}]}.
